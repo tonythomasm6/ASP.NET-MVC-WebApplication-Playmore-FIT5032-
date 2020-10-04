@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1f2ed285768c4703b30425809f0c1080" Name="Diagram1" ZoomLevel="106" >
+        <EntityTypeShape EntityType="Model1.Coach" Width="1.5" PointX="1.75" PointY="5.625" />
+        <EntityTypeShape EntityType="Model1.Game" Width="1.5" PointX="7.75" PointY="4.625" />
+        <EntityTypeShape EntityType="Model1.Workshop" Width="2.5" PointX="4.375" PointY="5" />
+        <EntityTypeShape EntityType="Model1.Booking" Width="2.5" PointX="8" PointY="7" />
+        <AssociationConnector Association="Model1.CoachGame" />
+        <AssociationConnector Association="Model1.WorkshopGame" />
+        <AssociationConnector Association="Model1.CoachWorkshop" />
+        <AssociationConnector Association="Model1.WorkshopBooking" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

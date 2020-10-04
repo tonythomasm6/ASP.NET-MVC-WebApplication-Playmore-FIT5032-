@@ -1,0 +1,50 @@
+﻿@model PlayMore_V2._0.Models.Workshop
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Workshop</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkshopDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkshopDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkshopLocation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkshopLocation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Game.GameName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Game.GameName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Coach.CoachName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Coach.CoachName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.WorkshopId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

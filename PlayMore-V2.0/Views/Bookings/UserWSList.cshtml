@@ -1,0 +1,55 @@
+﻿@model IEnumerable<PlayMore_V2._0.Models.Workshop>
+
+@{
+    ViewBag.Title = "UserWSList";
+}
+
+<h2>UserWSList</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkshopDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WorkshopLocation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Game.GameName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Coach.CoachName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkshopDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkshopLocation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Game.GameName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Coach.CoachName)
+        </td>
+        <td>
+            @*
+        @Html.ActionLink("Edit", "Edit", new { id = item.WorkshopId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.WorkshopId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.WorkshopId })
+            *@
+            @Html.ActionLink("Book", "UserConfirmBook", new { id = item.WorkshopId })
+
+        </td>
+    </tr>
+}
+
+</table>

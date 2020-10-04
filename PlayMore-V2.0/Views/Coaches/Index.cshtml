@@ -1,0 +1,45 @@
+﻿@model IEnumerable<PlayMore_V2._0.Models.Coach>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CoachName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CoachEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Game.GameName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CoachName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CoachEmail)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Game.GameName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CoachId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CoachId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CoachId })
+        </td>
+    </tr>
+}
+
+</table>

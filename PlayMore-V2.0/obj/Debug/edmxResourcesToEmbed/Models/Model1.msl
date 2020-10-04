@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="Coaches1">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Coach)">
+        <MappingFragment StoreEntitySet="Coaches1">
+          <ScalarProperty Name="CoachId" ColumnName="CoachId" />
+          <ScalarProperty Name="CoachName" ColumnName="CoachName" />
+          <ScalarProperty Name="CoachEmail" ColumnName="CoachEmail" />
+          <ScalarProperty Name="GameGameId" ColumnName="GameGameId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Games">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Game)">
+        <MappingFragment StoreEntitySet="Games">
+          <ScalarProperty Name="GameId" ColumnName="GameId" />
+          <ScalarProperty Name="GameName" ColumnName="GameName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Workshops1">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Workshop)">
+        <MappingFragment StoreEntitySet="Workshops1">
+          <ScalarProperty Name="WorkshopId" ColumnName="WorkshopId" />
+          <ScalarProperty Name="WorkshopDate" ColumnName="WorkshopDate" />
+          <ScalarProperty Name="WorkshopLocation" ColumnName="WorkshopLocation" />
+          <ScalarProperty Name="GameGameId" ColumnName="GameGameId" />
+          <ScalarProperty Name="CoachCoachId" ColumnName="CoachCoachId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bookings">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Booking)">
+        <MappingFragment StoreEntitySet="Bookings">
+          <ScalarProperty Name="BookId" ColumnName="BookId" />
+          <ScalarProperty Name="BookedBy_Userid" ColumnName="BookedBy_Userid" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="WorkshopWorkshopId" ColumnName="WorkshopWorkshopId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
