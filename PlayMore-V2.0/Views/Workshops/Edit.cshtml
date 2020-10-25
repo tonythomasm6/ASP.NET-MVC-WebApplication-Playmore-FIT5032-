@@ -1,4 +1,4 @@
-﻿@model PlayMore_V2._0.Models.Workshop
+﻿@model PlayMore_V5._0.Models.Workshop
 
 @{
     ViewBag.Title = "Edit";
@@ -6,11 +6,40 @@
 
 <h2>Edit</h2>
 
+<link href="~/Content/jquery-ui.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui.js"></script>
+<script src="~/Scripts/jquery.validate.date.js"></script>
+
+
+<script>
+    $(function () {
+        $('#txtDatePicker').datepicker(
+            {
+                dateFormat: 'dd/mm/yy',
+                changeMonth: true,
+                changeYear: true,
+                yearRange: '1950:2100',
+                defaultDate: '20/08/2020',
+                minDate: 0
+            });
+    });
+</script>
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
+
+    if (@ViewBag.editmsg != null)
+    {
+        <div>
+            <p class="success">  @ViewBag.editmsg </p>
+
+        </div>
+    }
+
+
     <div class="form-horizontal">
         <h4>Workshop</h4>
         <hr />
@@ -20,7 +49,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.WorkshopDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.WorkshopDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.WorkshopDate, new { htmlAttributes = new { @class = "form-control", @id = "txtDatePicker", autocomplete = "off" } })
                 @Html.ValidationMessageFor(model => model.WorkshopDate, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -34,10 +63,26 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.GameGameId, "GameGameId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.WSLocLattitude, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("GameGameId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.GameGameId, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.WSLocLattitude, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WSLocLattitude, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WSLocLongitude, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WSLocLongitude, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WSLocLongitude, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WorkShopFees, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WorkShopFees, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WorkShopFees, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -46,6 +91,14 @@
             <div class="col-md-10">
                 @Html.DropDownList("CoachCoachId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.CoachCoachId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GameGameId, "GameGameId", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("GameGameId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.GameGameId, "", new { @class = "text-danger" })
             </div>
         </div>
 

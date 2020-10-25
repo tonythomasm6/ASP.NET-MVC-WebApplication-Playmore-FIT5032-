@@ -7,26 +7,34 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PlayMore_V2._0.Models
+namespace PlayMore_V5._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Game
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Game()
         {
-            this.Coaches = new HashSet<Coach>();
             this.Workshops = new HashSet<Workshop>();
+            this.Coaches = new HashSet<Coach>();
         }
     
         public int GameId { get; set; }
+
+        [Required(ErrorMessage = "Please Enter Game Name")]
+        [Display(Name = "Game name")]
         public string GameName { get; set; }
+
+        [Required(ErrorMessage = "Please Enter Game Description")]
+        [Display(Name = "Game Description")]
+        public string GameDescription { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Coach> Coaches { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Workshop> Workshops { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Coach> Coaches { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(PlayMore_V2._0.Startup))]
-namespace PlayMore_V2._0
+[assembly: OwinStartupAttribute(typeof(PlayMore_V5._0.Startup))]
+namespace PlayMore_V5._0
 {
     public partial class Startup
     {

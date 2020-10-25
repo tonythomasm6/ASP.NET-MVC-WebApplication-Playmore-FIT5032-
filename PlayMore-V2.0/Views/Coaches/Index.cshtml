@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PlayMore_V2._0.Models.Coach>
+﻿@model IEnumerable<PlayMore_V5._0.Models.Coach>
 
 @{
     ViewBag.Title = "Index";
@@ -10,36 +10,62 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CoachName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CoachEmail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Game.GameName)
-        </th>
-        <th></th>
-    </tr>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CoachFName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CoachLName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CoachEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Game.GameName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CoachName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CoachEmail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Game.GameName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CoachId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CoachId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CoachId })
-        </td>
-    </tr>
-}
-
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CoachFName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CoachLName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CoachEmail)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Game.GameName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CoachId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.CoachId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CoachId })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
+
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+    </script>
+}
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css"
+      rel="stylesheet" />

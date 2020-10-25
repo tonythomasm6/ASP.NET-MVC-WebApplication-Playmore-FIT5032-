@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using PlayMore_V2._0.Models;
+using PlayMore_V5._0.Models;
 
-namespace PlayMore_V2._0.Controllers
+namespace PlayMore_V5._0.Controllers
 {
     [Authorize]
     public class ManageController : Controller

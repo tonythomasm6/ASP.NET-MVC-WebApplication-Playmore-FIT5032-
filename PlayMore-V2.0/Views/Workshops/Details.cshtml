@@ -1,4 +1,4 @@
-﻿@model PlayMore_V2._0.Models.Workshop
+﻿@model PlayMore_V5._0.Models.Workshop
 
 @{
     ViewBag.Title = "Details";
@@ -27,19 +27,43 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.WSLocLattitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WSLocLattitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WSLocLongitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WSLocLongitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WorkShopFees)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WorkShopFees)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Coach.CoachFName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Coach.CoachFName)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.Game.GameName)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Game.GameName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Coach.CoachName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Coach.CoachName)
         </dd>
 
     </dl>

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace PlayMore_V2._0
+namespace PlayMore_V5._0
 {
     public class FilterConfig
     {

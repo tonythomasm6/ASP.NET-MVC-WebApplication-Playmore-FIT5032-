@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "CreateFeedback";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <style>
+        .rating {
+            unicode-bidi: bidi-override;
+            direction: rtl;
+        }
+
+            .rating > span {
+                display: inline-block;
+                position: relative;
+                width: 2em;
+            }
+
+                .rating > span:hover:before,
+                .rating > span:hover ~ span:before {
+                    content: "\2605";
+                    position: absolute;
+                }
+    </style>
+</head>
+<h3>Make Booking</h3>
+<div>
+    <p class="success">Booking made succesfully !!!</p>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+    function clickPop(val) {
+        window.location.href = '@Url.Action("SetRating", "Bookings")/' + val;
+    }
+</script>
+<h2>
+    <div class="rating" style="float: left;">
+
+        <span onclick="javascript:clickPop('5')">☆</span>
+        <span onclick="javascript:clickPop('4')">☆</span>
+        <span onclick="javascript:clickPop('3')">☆</span>
+        <span onclick="javascript:clickPop('2')">☆</span>
+        <span onclick="javascript:clickPop('1')">☆</span>
+
+    </div>
+</h2>
+
+
+<br />
+
+<br />
+
+<br />
+
+<br />
+
+<br />

@@ -7,16 +7,28 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PlayMore_V2._0.Models
+namespace PlayMore_V5._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Booking
     {
         public int BookId { get; set; }
         public string BookedBy_Userid { get; set; }
-        public string Name { get; set; }
+
+        [Required(ErrorMessage = "Please Enter First Name")]
+        [Display(Name = "First name")]
+        public string BookFName { get; set; }
+
+        [Required(ErrorMessage = "Please Enter Last Name")]
+        [Display(Name = "Last name")]
+        public string BookLName { get; set; }
+
+        [Required(ErrorMessage = "Please Enter Age")]
+        [Display(Name = "Age")]
+        public string BookAge { get; set; }
         public int WorkshopWorkshopId { get; set; }
     
         public virtual Workshop Workshop { get; set; }

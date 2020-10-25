@@ -1,4 +1,4 @@
-﻿@model PlayMore_V2._0.Models.Game
+﻿@model PlayMore_V5._0.Models.Game
 
 @{
     ViewBag.Title = "Delete";
@@ -17,6 +17,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.GameName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GameDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GameDescription)
         </dd>
 
     </dl>

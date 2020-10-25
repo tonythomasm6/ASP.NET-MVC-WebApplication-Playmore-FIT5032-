@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace PlayMore_V2._0
+namespace PlayMore_V5._0
 {
     public class RouteConfig
     {

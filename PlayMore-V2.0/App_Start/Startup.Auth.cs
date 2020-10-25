@@ -5,9 +5,9 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using PlayMore_V2._0.Models;
+using PlayMore_V5._0.Models;
 
-namespace PlayMore_V2._0
+namespace PlayMore_V5._0
 {
     public partial class Startup
     {
@@ -58,11 +58,11 @@ namespace PlayMore_V2._0
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "22734083201-hhakj36m7c7jb47ptnnuj1ajh5tp7f1g.apps.googleusercontent.com",
+                ClientSecret = "WFK087y0m66Td6wihN8btHEf"
+            });
         }
     }
 }

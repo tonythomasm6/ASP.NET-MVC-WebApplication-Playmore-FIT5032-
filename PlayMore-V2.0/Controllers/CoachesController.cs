@@ -6,9 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using PlayMore_V2._0.Models;
+using PlayMore_V5._0.Models;
 
-namespace PlayMore_V2._0.Controllers
+namespace PlayMore_V5._0.Controllers
 {
     [Authorize(Roles = "admin")]
     public class CoachesController : Controller
@@ -18,8 +18,8 @@ namespace PlayMore_V2._0.Controllers
         // GET: Coaches
         public ActionResult Index()
         {
-            var coaches1 = db.Coaches1.Include(c => c.Game);
-            return View(coaches1.ToList());
+            var coaches = db.Coaches.Include(c => c.Game);
+            return View(coaches.ToList());
         }
 
         // GET: Coaches/Details/5
@@ -29,7 +29,7 @@ namespace PlayMore_V2._0.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Coach coach = db.Coaches1.Find(id);
+            Coach coach = db.Coaches.Find(id);
             if (coach == null)
             {
                 return HttpNotFound();
@@ -49,17 +49,25 @@ namespace PlayMore_V2._0.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CoachId,CoachName,CoachEmail,GameGameId")] Coach coach)
+        public ActionResult Create([Bind(Include = "CoachId,CoachFName,CoachLName,CoachEmail,GameGameId")] Coach coach)
         {
             if (ModelState.IsValid)
             {
-                db.Coaches1.Add(coach);
+                db.Coaches.Add(coach);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                return RedirectToAction("CreateFeedback");
+
+                //return RedirectToAction("Index");
             }
 
             ViewBag.GameGameId = new SelectList(db.Games, "GameId", "GameName", coach.GameGameId);
             return View(coach);
+        }
+
+        public ActionResult CreateFeedback()
+        {
+            return View();
         }
 
         // GET: Coaches/Edit/5
@@ -69,7 +77,7 @@ namespace PlayMore_V2._0.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Coach coach = db.Coaches1.Find(id);
+            Coach coach = db.Coaches.Find(id);
             if (coach == null)
             {
                 return HttpNotFound();
@@ -83,13 +91,16 @@ namespace PlayMore_V2._0.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CoachId,CoachName,CoachEmail,GameGameId")] Coach coach)
+        public ActionResult Edit([Bind(Include = "CoachId,CoachFName,CoachLName,CoachEmail,GameGameId")] Coach coach)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(coach).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                ViewBag.feedBackMsg = "Coach Details edited successfully !!";
+                //return RedirectToAction("Index");
+                ViewBag.GameGameId = new SelectList(db.Games, "GameId", "GameName", coach.GameGameId);
+                return View(coach);
             }
             ViewBag.GameGameId = new SelectList(db.Games, "GameId", "GameName", coach.GameGameId);
             return View(coach);
@@ -102,7 +113,7 @@ namespace PlayMore_V2._0.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Coach coach = db.Coaches1.Find(id);
+            Coach coach = db.Coaches.Find(id);
             if (coach == null)
             {
                 return HttpNotFound();
@@ -115,10 +126,16 @@ namespace PlayMore_V2._0.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Coach coach = db.Coaches1.Find(id);
-            db.Coaches1.Remove(coach);
+            Coach coach = db.Coaches.Find(id);
+            db.Coaches.Remove(coach);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            //return RedirectToAction("Index");
+            return RedirectToAction("DeleteFeedback");
+        }
+
+        public ActionResult DeleteFeedback()
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)

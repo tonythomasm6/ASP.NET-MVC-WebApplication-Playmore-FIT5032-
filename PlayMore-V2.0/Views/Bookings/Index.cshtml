@@ -1,4 +1,4 @@
-﻿@model IEnumerable<PlayMore_V2._0.Models.Booking>
+﻿@model IEnumerable<PlayMore_V5._0.Models.Booking>
 
 @{
     ViewBag.Title = "Index";
@@ -6,42 +6,142 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BookedBy_Userid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Workshop.WorkshopLocation)
-        </th>
-        <th></th>
-    </tr>
+<script>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BookedBy_Userid)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Workshop.WorkshopLocation)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.BookId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.BookId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.BookId } )
-            </td>
-        </tr>
+    function printPage1() {
+        window.print();
     }
 
+    function printPage2() {
+        window.printPage();
+    }
+</script>
+
+
+
+<p>
+    <div>
+        @if (User.IsInRole("admin"))
+        {
+            @Html.ActionLink("Create New", "Create")
+        }
+        @* <div style="float: right;">
+            <input type="button" class="button" value="View Charts"
+                   onclick="location.href='@Url.Action("Charts", "Bookings")'" />
+        </div>
+        *@
+    </div>
+</p>
+
+<br />
+
+
+
+<br />
+
+<table class="table">
+    <thead>
+        <tr>
+            @*
+                <th>
+                    @Html.DisplayNameFor(model => model.BookedBy_Userid)
+                </th>
+            *@
+            <th>
+                @Html.DisplayNameFor(model => model.BookFName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookLName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BookAge)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Workshop.WorkshopDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Workshop.WorkShopFees)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Workshop.WorkshopLocation)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Workshop.Game.GameName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BookedBy_Userid)
+                    </td>
+                *@
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookFName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookLName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookAge)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Workshop.WorkshopDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Workshop.WorkShopFees)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Workshop.WorkshopLocation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Workshop.Game.GameName)
+                </td>
+
+
+                <td>
+
+                    @if (User.IsInRole("admin"))
+                    {
+
+                        @Html.ActionLink("Edit", "Edit", new { id = item.BookId })
+
+                    }
+
+                    | @Html.ActionLink("Details", "Details", new { id = item.BookId })
+
+
+                    |@Html.ActionLink("Cancel", "Delete", new { id = item.BookId })
+
+
+                </td>
+
+
+
+            </tr>
+        }
+    </tbody>
 </table>
 
+
+
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/DataTables/jquery.dataTables.js")
+    @Scripts.Render("~/Scripts/DataTables/dataTables.bootstrap.js")
+
+    <script>
+        $(document).ready(function () {
+            $('.table').DataTable();
+        });
+    </script>
+}
+<link href="~/Content/DataTables/css/dataTables.bootstrap.min.css"
+      rel="stylesheet" />

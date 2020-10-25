@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace PlayMore_V2._0
+namespace PlayMore_V5._0
 {
     public class BundleConfig
     {
@@ -25,6 +25,10 @@ namespace PlayMore_V2._0
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            //Map box 
+            bundles.Add(new ScriptBundle("~/bundles/mapbox").Include(
+                        "~/Scripts/location.js"));
         }
     }
 }

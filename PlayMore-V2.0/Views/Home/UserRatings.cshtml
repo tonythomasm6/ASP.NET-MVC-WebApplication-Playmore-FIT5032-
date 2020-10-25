@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "UserRatings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>User Ratings</h2>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Chart View</title>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+
+
+<script type="text/javascript">
+
+       window.onload = function () {
+
+           var result = @Html.Raw(ViewBag.DataPoints);
+            var dataPoints =[];
+           for (var i = 0; i < result.length; i++){
+
+               dataPoints.push({ label: result[i].Label, x: result[i].X, y: result[i].Y });
+
+            }
+
+
+         var chart1 = new CanvasJS.Chart("chartContainer1", {
+            theme: "theme2",
+            animationEnabled: true,
+            title: {
+               text: ""
+            },
+
+            data: [
+               {
+                  // change type to bar, line, area, pie, etc.
+                  type: "bar",
+                    dataPoints: dataPoints
+
+               }
+            ]
+         });
+
+        chart1.render();
+    };
+    </script>
+
+<body>
+    <div style="float: right;">
+        <input type="button" class="button" id="Bargraph" value="Export stats" onclick="location.href='@Url.Action("ExportPDF", "Home")'" />
+    </div>
+
+    <br />
+    <div id="chartContainer1" style="width: 45%; height: 300px;display: inline-block;"></div>
+</body>

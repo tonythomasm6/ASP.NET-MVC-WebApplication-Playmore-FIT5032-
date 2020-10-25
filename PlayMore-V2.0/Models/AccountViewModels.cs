@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace PlayMore_V2._0.Models
+namespace PlayMore_V5._0.Models
 {
     public class ExternalLoginConfirmationViewModel
     {

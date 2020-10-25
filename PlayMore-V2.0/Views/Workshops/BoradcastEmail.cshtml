@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "BoradcastEmail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<br />
+
+<h3>BoradcastEmail</h3>
+<br />
+<p>
+    Click to send the upcoming workshop details to all registered users :
+
+    <input type="button" class="button" id="Bargraph" value="Send Broadcast Email"
+           onclick="location.href='@Url.Action("SendBoradcastEmail", "Workshops")'" />
+</p>
+
+<br />
+    @foreach (var str in ViewBag.listEmail)
+    {
+        <ul>@Html.Raw(str); </ul>
+    }
+
+
+
+
+

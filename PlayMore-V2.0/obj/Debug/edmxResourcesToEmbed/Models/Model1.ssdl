@@ -1,34 +1,49 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityContainer Name="Model1StoreContainer">
-    <EntitySet Name="Coaches1" EntityType="Model1.Store.Coaches1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Coaches" EntityType="Model1.Store.Coaches" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Workshops" EntityType="Model1.Store.Workshops" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Games" EntityType="Model1.Store.Games" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Workshops1" EntityType="Model1.Store.Workshops1" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Bookings" EntityType="Model1.Store.Bookings" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="CoachGame" Association="Model1.Store.CoachGame">
-      <End Role="Coach" EntitySet="Coaches1" />
-      <End Role="Game" EntitySet="Games" />
-    </AssociationSet>
-    <AssociationSet Name="WorkshopGame" Association="Model1.Store.WorkshopGame">
-      <End Role="Workshop" EntitySet="Workshops1" />
-      <End Role="Game" EntitySet="Games" />
-    </AssociationSet>
+    <EntitySet Name="Ratings" EntityType="Model1.Store.Ratings" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="CoachWorkshop" Association="Model1.Store.CoachWorkshop">
-      <End Role="Coach" EntitySet="Coaches1" />
-      <End Role="Workshop" EntitySet="Workshops1" />
+      <End Role="Coach" EntitySet="Coaches" />
+      <End Role="Workshop" EntitySet="Workshops" />
     </AssociationSet>
-    <AssociationSet Name="WorkshopBooking" Association="Model1.Store.WorkshopBooking">
-      <End Role="Workshop" EntitySet="Workshops1" />
+    <AssociationSet Name="BookingWorkshop" Association="Model1.Store.BookingWorkshop">
       <End Role="Booking" EntitySet="Bookings" />
+      <End Role="Workshop" EntitySet="Workshops" />
+    </AssociationSet>
+    <AssociationSet Name="GameWorkshop" Association="Model1.Store.GameWorkshop">
+      <End Role="Game" EntitySet="Games" />
+      <End Role="Workshop" EntitySet="Workshops" />
+    </AssociationSet>
+    <AssociationSet Name="CoachGame" Association="Model1.Store.CoachGame">
+      <End Role="Coach" EntitySet="Coaches" />
+      <End Role="Game" EntitySet="Games" />
     </AssociationSet>
   </EntityContainer>
-  <EntityType Name="Coaches1">
+  <EntityType Name="Coaches">
     <Key>
       <PropertyRef Name="CoachId" />
     </Key>
     <Property Name="CoachId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CoachName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CoachFName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CoachLName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="CoachEmail" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GameGameId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Workshops">
+    <Key>
+      <PropertyRef Name="WorkshopId" />
+    </Key>
+    <Property Name="WorkshopId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WorkshopDate" Type="datetime" Nullable="false" />
+    <Property Name="WorkshopLocation" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WSLocLattitude" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WSLocLongitude" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WorkShopFees" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CoachCoachId" Type="int" Nullable="false" />
     <Property Name="GameGameId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Games">
@@ -37,16 +52,7 @@
     </Key>
     <Property Name="GameId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="GameName" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Workshops1">
-    <Key>
-      <PropertyRef Name="WorkshopId" />
-    </Key>
-    <Property Name="WorkshopId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="WorkshopDate" Type="datetime" Nullable="false" />
-    <Property Name="WorkshopLocation" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="GameGameId" Type="int" Nullable="false" />
-    <Property Name="CoachCoachId" Type="int" Nullable="false" />
+    <Property Name="GameDescription" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Bookings">
     <Key>
@@ -54,36 +60,22 @@
     </Key>
     <Property Name="BookId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="BookedBy_Userid" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BookFName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BookLName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="BookAge" Type="nvarchar(max)" Nullable="false" />
     <Property Name="WorkshopWorkshopId" Type="int" Nullable="false" />
   </EntityType>
-  <Association Name="CoachGame">
-    <End Role="Coach" Type="Model1.Store.Coaches1" Multiplicity="*" />
-    <End Role="Game" Type="Model1.Store.Games" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Game">
-        <PropertyRef Name="GameId" />
-      </Principal>
-      <Dependent Role="Coach">
-        <PropertyRef Name="GameGameId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="WorkshopGame">
-    <End Role="Workshop" Type="Model1.Store.Workshops1" Multiplicity="*" />
-    <End Role="Game" Type="Model1.Store.Games" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Game">
-        <PropertyRef Name="GameId" />
-      </Principal>
-      <Dependent Role="Workshop">
-        <PropertyRef Name="GameGameId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
+  <EntityType Name="Ratings">
+    <Key>
+      <PropertyRef Name="RatingId" />
+    </Key>
+    <Property Name="RatingId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RatingGiven" Type="int" Nullable="false" />
+  </EntityType>
   <Association Name="CoachWorkshop">
-    <End Role="Coach" Type="Model1.Store.Coaches1" Multiplicity="1" />
-    <End Role="Workshop" Type="Model1.Store.Workshops1" Multiplicity="*" />
+    <End Role="Coach" Type="Model1.Store.Coaches" Multiplicity="1" />
+    <End Role="Workshop" Type="Model1.Store.Workshops" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Coach">
         <PropertyRef Name="CoachId" />
@@ -93,15 +85,39 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="WorkshopBooking">
-    <End Role="Workshop" Type="Model1.Store.Workshops1" Multiplicity="1" />
+  <Association Name="BookingWorkshop">
     <End Role="Booking" Type="Model1.Store.Bookings" Multiplicity="*" />
+    <End Role="Workshop" Type="Model1.Store.Workshops" Multiplicity="1" />
     <ReferentialConstraint>
       <Principal Role="Workshop">
         <PropertyRef Name="WorkshopId" />
       </Principal>
       <Dependent Role="Booking">
         <PropertyRef Name="WorkshopWorkshopId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="GameWorkshop">
+    <End Role="Game" Type="Model1.Store.Games" Multiplicity="1" />
+    <End Role="Workshop" Type="Model1.Store.Workshops" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Game">
+        <PropertyRef Name="GameId" />
+      </Principal>
+      <Dependent Role="Workshop">
+        <PropertyRef Name="GameGameId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CoachGame">
+    <End Role="Coach" Type="Model1.Store.Coaches" Multiplicity="*" />
+    <End Role="Game" Type="Model1.Store.Games" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Game">
+        <PropertyRef Name="GameId" />
+      </Principal>
+      <Dependent Role="Coach">
+        <PropertyRef Name="GameGameId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

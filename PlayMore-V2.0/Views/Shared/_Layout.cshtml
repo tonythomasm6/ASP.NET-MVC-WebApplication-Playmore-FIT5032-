@@ -11,6 +11,16 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
+<link href="~/Content/styleSheet.css" rel="stylesheet" />
+
+    @* This is for the mapbox map. *@
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css' rel='stylesheet' />
+    @*This is used for the Geocoding Mapbox API*@
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.2.0/mapbox-gl-geocoder.min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.2.0/mapbox-gl-geocoder.css' type='text/css' />
+
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -21,23 +31,46 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("PlayMore", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+
+                    @*
+
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
 
-                    <li>@Html.ActionLink("Workshops", "Index", "Workshops")</li>
+                    @*
+        <li>@Html.ActionLink("About", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    *@
+                    @if (User.IsInRole("user"))
+                    {
 
-                    <li>@Html.ActionLink("Bookings", "Index", "Bookings")</li>
+                        <li>@Html.ActionLink("Book a Workshop", "UserWSList", "Bookings")</li>
 
-                    <li>@Html.ActionLink("Games", "Index", "Games")</li>
+                        <li>@Html.ActionLink("View Bookings", "Index", "Bookings")</li>
+                    }
 
-                    <li>@Html.ActionLink("Coaches", "Index", "Coaches")</li>
 
-                    <li>@Html.ActionLink("Customer Booking", "UserWSList", "Bookings")</li>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Workshops", "Index", "Workshops")</li>
+
+                        <li>@Html.ActionLink("Games", "Index", "Games")</li>
+
+                        <li>@Html.ActionLink("Coaches", "Index", "Coaches")</li>
+
+                        <li>@Html.ActionLink("View Bookings", "Index", "Bookings")</li>
+
+                        <li>@Html.ActionLink("User Ratings", "UserRatings", "Home")</li>
+
+                        <li>@Html.ActionLink("Bookings Statistics", "Charts", "Bookings")</li>
+
+                        <li>@Html.ActionLink("Broadcast Workshops", "BoradcastEmail", "Workshops")</li>
+                    }
+
+
 
 
 
@@ -50,7 +83,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - PlayMore</p>
         </footer>
     </div>
 

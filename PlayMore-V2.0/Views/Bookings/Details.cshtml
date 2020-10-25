@@ -1,4 +1,4 @@
-﻿@model PlayMore_V2._0.Models.Booking
+﻿@model PlayMore_V5._0.Models.Booking
 
 @{
     ViewBag.Title = "Details";
@@ -19,11 +19,27 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.BookFName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.BookFName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookLName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookLName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BookAge)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BookAge)
         </dd>
 
         <dt>

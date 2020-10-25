@@ -6,9 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using PlayMore_V2._0.Models;
+using PlayMore_V5._0.Models;
 
-namespace PlayMore_V2._0.Controllers
+namespace PlayMore_V5._0.Controllers
 {
     [Authorize(Roles = "admin")]
     public class GamesController : Controller
@@ -47,17 +47,25 @@ namespace PlayMore_V2._0.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "GameId,GameName")] Game game)
+        public ActionResult Create([Bind(Include = "GameId,GameName,GameDescription")] Game game)
         {
             if (ModelState.IsValid)
             {
                 db.Games.Add(game);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                return RedirectToAction("CreateFeedback");
+                //return RedirectToAction("Index");
             }
 
             return View(game);
         }
+
+        public ActionResult CreateFeedback()
+        {
+            return View();
+        }
+
 
         // GET: Games/Edit/5
         public ActionResult Edit(int? id)
@@ -79,13 +87,16 @@ namespace PlayMore_V2._0.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "GameId,GameName")] Game game)
+        public ActionResult Edit([Bind(Include = "GameId,GameName,GameDescription")] Game game)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(game).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+
+                ViewBag.feedBackMsg = "Game details updated successfully ! ";
+                return View();
+                //return RedirectToAction("Index");
             }
             return View(game);
         }
@@ -113,7 +124,14 @@ namespace PlayMore_V2._0.Controllers
             Game game = db.Games.Find(id);
             db.Games.Remove(game);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return RedirectToAction("DeleteFeedback");
+            //return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteFeedback()
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)

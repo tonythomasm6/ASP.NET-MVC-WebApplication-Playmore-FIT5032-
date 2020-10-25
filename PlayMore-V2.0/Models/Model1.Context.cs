@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PlayMore_V2._0.Models
+namespace PlayMore_V5._0.Models
 {
     using System;
     using System.Data.Entity;
@@ -25,9 +25,10 @@ namespace PlayMore_V2._0.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Coach> Coaches1 { get; set; }
+        public virtual DbSet<Coach> Coaches { get; set; }
+        public virtual DbSet<Workshop> Workshops { get; set; }
         public virtual DbSet<Game> Games { get; set; }
-        public virtual DbSet<Workshop> Workshops1 { get; set; }
         public virtual DbSet<Booking> Bookings { get; set; }
+        public virtual DbSet<Rating> Ratings { get; set; }
     }
 }

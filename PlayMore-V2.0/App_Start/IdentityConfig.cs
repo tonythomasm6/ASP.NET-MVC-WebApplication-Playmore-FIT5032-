@@ -10,9 +10,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using PlayMore_V2._0.Models;
+using PlayMore_V5._0.Models;
 
-namespace PlayMore_V2._0
+namespace PlayMore_V5._0
 {
     public class EmailService : IIdentityMessageService
     {

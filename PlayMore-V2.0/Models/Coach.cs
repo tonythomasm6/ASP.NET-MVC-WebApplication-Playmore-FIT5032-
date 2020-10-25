@@ -7,11 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PlayMore_V2._0.Models
+namespace PlayMore_V5._0.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Coach
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,12 +22,24 @@ namespace PlayMore_V2._0.Models
         }
     
         public int CoachId { get; set; }
-        public string CoachName { get; set; }
+
+        [Required(ErrorMessage = "Please Enter First Name of Coach")]
+        [Display(Name = "First name")]
+        public string CoachFName { get; set; }
+
+        [Required(ErrorMessage = "Please Enter Last Name of Coach")]
+        [Display(Name = "Last name")]
+        public string CoachLName { get; set; }
+
+        [Required(ErrorMessage = "Please Coach Email")]
+        [Display(Name = "Email")]
         public string CoachEmail { get; set; }
+
+        [Display(Name ="Game Name")]
         public int GameGameId { get; set; }
     
-        public virtual Game Game { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Workshop> Workshops { get; set; }
+        public virtual Game Game { get; set; }
     }
 }

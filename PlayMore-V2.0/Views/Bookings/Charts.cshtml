@@ -1,0 +1,199 @@
+﻿@{
+   ViewBag.Title = "ChartView";
+}
+ 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Chart View</title>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"> </script>
+
+
+
+    <!--<link href="~/Content/styleSheet.css" rel="stylesheet" /> -->
+
+
+
+    <script type="text/javascript">
+
+        //Charts
+        function exportFile() {
+            window.print();
+        }
+
+
+
+
+        function onAllClick() {
+            document.getElementById("chartContainer1").style.display = "inline-block";
+            document.getElementById("chartContainer2").style.display = "inline-block";
+            document.getElementById("chartContainer3").style.display = "inline-block";
+            document.getElementById("chartContainer4").style.display = "inline-block";
+        }
+        function onBarClick() {
+            document.getElementById("Bargraph").style.backgroundColor = "red";
+
+            document.getElementById("chartContainer1").style.display = "inline-block";
+            document.getElementById("chartContainer2").style.display = "None";
+            document.getElementById("chartContainer3").style.display = "None";
+            document.getElementById("chartContainer4").style.display = "None";
+
+        }
+
+        function onPieClick() {
+            document.getElementById("chartContainer1").style.display = "None";
+            document.getElementById("chartContainer2").style.display = "inline-block";
+            document.getElementById("chartContainer3").style.display = "None";
+            document.getElementById("chartContainer4").style.display = "None";
+        }
+
+        function onLineClick() {
+            document.getElementById("chartContainer1").style.display = "None";
+            document.getElementById("chartContainer2").style.display = "None";
+            document.getElementById("chartContainer3").style.display = "inline-block";
+            document.getElementById("chartContainer4").style.display = "None";
+        }
+
+        function onAreaClick() {
+            document.getElementById("chartContainer1").style.display = "None";
+            document.getElementById("chartContainer2").style.display = "None";
+            document.getElementById("chartContainer3").style.display = "None";
+            document.getElementById("chartContainer4").style.display = "Inline";
+        }
+
+
+
+    </script>
+
+
+    <script type="text/javascript">
+
+       window.onload = function () {
+
+           var result = @Html.Raw(ViewBag.DataPoints);
+            var dataPoints =[];
+           for (var i = 0; i < result.length; i++){
+
+               dataPoints.push({ label: result[i].Label, x: result[i].X, y: result[i].Y });
+
+            }
+
+
+         var chart1 = new CanvasJS.Chart("chartContainer1", {
+            theme: "theme2",
+            animationEnabled: true,
+            title: {
+               text: ""
+            },
+
+            data: [
+               {
+                  // change type to bar, line, area, pie, etc.
+                  type: "bar",
+                    dataPoints: dataPoints
+
+               }
+            ]
+         });
+
+
+           var chart2 = new CanvasJS.Chart("chartContainer2", {
+               theme: "theme2",
+               animationEnabled: true,
+               title: {
+                   text: ""
+               },
+               data: [
+                   {
+                       // change type to bar, line, area, pie, etc.
+                       type: "pie",
+                       dataPoints: dataPoints
+
+                   }
+               ]
+           });
+
+
+           var chart3 = new CanvasJS.Chart("chartContainer3", {
+               theme: "theme2",
+               animationEnabled: true,
+               title: {
+                   text: ""
+               },
+               data: [
+                   {
+                       // change type to bar, line, area, pie, etc.
+                       type: "line",
+                       dataPoints: dataPoints
+
+                   }
+               ]
+           });
+
+           var chart4 = new CanvasJS.Chart("chartContainer4", {
+               theme: "theme2",
+               animationEnabled: true,
+               title: {
+                   text: ""
+               },
+               data: [
+                   {
+                       // change type to bar, line, area, pie, etc.
+                       type: "area",
+                       dataPoints: dataPoints
+
+                   }
+               ]
+           });
+
+
+           chart1.render();
+           chart2.render();
+           chart3.render();
+           chart4.render();
+
+
+      };
+    </script>
+</head>
+
+
+<body>
+
+    <h2>Number of Bookings per game</h2>
+
+<br />
+<div>
+    <input type="button" class="button" id="Allgraph" value="All Graph" onclick="javascript:onAllClick()" />
+    <input type="button" class="button" id="Bargraph" value="Bar Graph" onclick="javascript:onBarClick()" />
+    <input type="button" class="button" id="Piegraph" value="Pie Graph" onclick="javascript:onPieClick()" />
+    <input type="button" class="button" id="Linegraph" value="Line Graph" onclick="javascript:onLineClick()" />
+    <input type="button" class="button" id="Areagraph" value="Area Graph" onclick="javascript:onAreaClick()" />
+
+    <div style="float: right;">
+        <input type="button" class="button" id="ExportPDF" value="Export Charts" onclick="javascript:exportFile()" />
+        <input type="button" class="button" id="Bargraph" value="Email Chart" onclick="location.href='@Url.Action("Send_Email", "Bookings")'" />
+    </div>
+</div>
+
+    <div style="float: right;">
+        
+    </div>
+
+
+
+    <br />
+
+    <p>
+        <div id="chartContainer1" style="width: 45%; height: 300px;display: inline-block;"></div>
+        <div id="chartContainer2" style="width: 45%; height: 300px;display: inline-block;"></div><br /><br />
+        <div id="chartContainer3" style="width: 45%; height: 300px;display: inline-block;"></div>
+        <div id="chartContainer4" style="width: 45%; height: 300px;display: inline-block;"></div>
+
+
+    </p>
+
+
+
+</body>
+</html>

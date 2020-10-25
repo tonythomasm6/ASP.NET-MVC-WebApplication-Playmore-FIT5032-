@@ -1,12 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
-    <EntitySetMapping Name="Coaches1">
+    <EntitySetMapping Name="Coaches">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.Coach)">
-        <MappingFragment StoreEntitySet="Coaches1">
+        <MappingFragment StoreEntitySet="Coaches">
           <ScalarProperty Name="CoachId" ColumnName="CoachId" />
-          <ScalarProperty Name="CoachName" ColumnName="CoachName" />
+          <ScalarProperty Name="CoachFName" ColumnName="CoachFName" />
+          <ScalarProperty Name="CoachLName" ColumnName="CoachLName" />
           <ScalarProperty Name="CoachEmail" ColumnName="CoachEmail" />
+          <ScalarProperty Name="GameGameId" ColumnName="GameGameId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Workshops">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Workshop)">
+        <MappingFragment StoreEntitySet="Workshops">
+          <ScalarProperty Name="WorkshopId" ColumnName="WorkshopId" />
+          <ScalarProperty Name="WorkshopDate" ColumnName="WorkshopDate" />
+          <ScalarProperty Name="WorkshopLocation" ColumnName="WorkshopLocation" />
+          <ScalarProperty Name="WSLocLattitude" ColumnName="WSLocLattitude" />
+          <ScalarProperty Name="WSLocLongitude" ColumnName="WSLocLongitude" />
+          <ScalarProperty Name="WorkShopFees" ColumnName="WorkShopFees" />
+          <ScalarProperty Name="CoachCoachId" ColumnName="CoachCoachId" />
           <ScalarProperty Name="GameGameId" ColumnName="GameGameId" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -16,17 +31,7 @@
         <MappingFragment StoreEntitySet="Games">
           <ScalarProperty Name="GameId" ColumnName="GameId" />
           <ScalarProperty Name="GameName" ColumnName="GameName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Workshops1">
-      <EntityTypeMapping TypeName="IsTypeOf(Model1.Workshop)">
-        <MappingFragment StoreEntitySet="Workshops1">
-          <ScalarProperty Name="WorkshopId" ColumnName="WorkshopId" />
-          <ScalarProperty Name="WorkshopDate" ColumnName="WorkshopDate" />
-          <ScalarProperty Name="WorkshopLocation" ColumnName="WorkshopLocation" />
-          <ScalarProperty Name="GameGameId" ColumnName="GameGameId" />
-          <ScalarProperty Name="CoachCoachId" ColumnName="CoachCoachId" />
+          <ScalarProperty Name="GameDescription" ColumnName="GameDescription" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -35,8 +40,19 @@
         <MappingFragment StoreEntitySet="Bookings">
           <ScalarProperty Name="BookId" ColumnName="BookId" />
           <ScalarProperty Name="BookedBy_Userid" ColumnName="BookedBy_Userid" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BookFName" ColumnName="BookFName" />
+          <ScalarProperty Name="BookLName" ColumnName="BookLName" />
+          <ScalarProperty Name="BookAge" ColumnName="BookAge" />
           <ScalarProperty Name="WorkshopWorkshopId" ColumnName="WorkshopWorkshopId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ratings">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.Rating)">
+        <MappingFragment StoreEntitySet="Ratings">
+          <ScalarProperty Name="RatingId" ColumnName="RatingId" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="RatingGiven" ColumnName="RatingGiven" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
