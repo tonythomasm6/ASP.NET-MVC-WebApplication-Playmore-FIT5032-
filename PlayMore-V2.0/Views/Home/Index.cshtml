@@ -2,30 +2,37 @@
     ViewBag.Title = "Home Page";
 }
 
+<style>
+
+</style>
+
+
 <div class="jumbotron">
     <h1>PlayMore</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    <p class="lead">Discover and book from a curated list of sports venues in your city only on Playmore</p>
+    <p class="lead">Get professional training for a wide range of Games like Cricket, Football, BasketBall, Tennis etc from experts. Click to start booking</p>
+    <p><a onclick="location.href='@Url.Action("UserWSList", "Bookings")'" class="btn btn-primary btn-lg">Book Now&raquo;</a></p>
+
+    
+
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
+<div class="row" >
+    <div class="col-12 col-sm-6 col-md-4">
+        <h2>Sign In</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+           Sign into the application to book workshops and view your bookings !!
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <p><a class="btn btn-default" onclick="location.href='@Url.Action("UserWSList", "Bookings")'">Sign In &raquo;</a></p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+    <div class="col-12 col-sm-6 col-md-4">
+        <h2>About us</h2>
+        <p>Know more about the largest sports ecosystem in Australia.</p>
+        <p><a class="btn btn-default" onclick="location.href='@Url.Action("About", "Home")'">Know More &raquo;</a></p>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-12 col-sm-6 col-md-4">
+        <h2>Got Questions?</h2>
+        <p>Contact us anytime regarding any sort of queries regarding booking or any workshop details</p>
+        <p><a class="btn btn-default" onclick="location.href='@Url.Action("Contact", "Home")'">Contact Us &raquo;</a></p>
     </div>
 </div>

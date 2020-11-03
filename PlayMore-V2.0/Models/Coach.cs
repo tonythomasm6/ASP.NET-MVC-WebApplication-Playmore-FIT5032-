@@ -24,17 +24,19 @@ namespace PlayMore_V5._0.Models
         public int CoachId { get; set; }
 
         [Required(ErrorMessage = "Please Enter First Name of Coach")]
-        [Display(Name = "First name")]
+        [Display(Name = "Coach First name")]
         public string CoachFName { get; set; }
 
         [Required(ErrorMessage = "Please Enter Last Name of Coach")]
-        [Display(Name = "Last name")]
+        [Display(Name = "Coach Last name")]
         public string CoachLName { get; set; }
 
+        [EmailAddress]
         [Required(ErrorMessage = "Please Coach Email")]
-        [Display(Name = "Email")]
+        [Display(Name = "Coach Email")]
         public string CoachEmail { get; set; }
 
+        [Required(ErrorMessage ="Enter a game")]
         [Display(Name ="Game Name")]
         public int GameGameId { get; set; }
     

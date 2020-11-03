@@ -18,7 +18,7 @@ namespace PlayMore_V5._0.Controllers
     {
         private Model1Container db = new Model1Container();
 
-
+        [AllowAnonymous]
         public ActionResult Index()
         {
 
@@ -88,6 +88,7 @@ namespace PlayMore_V5._0.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -95,6 +96,7 @@ namespace PlayMore_V5._0.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

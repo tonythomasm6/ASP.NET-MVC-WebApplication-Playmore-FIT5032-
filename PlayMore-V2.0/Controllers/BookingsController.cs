@@ -26,15 +26,31 @@ namespace PlayMore_V5._0.Controllers
             var userID = User.Identity.GetUserId();
             var book = db.Bookings.Where(b => b.BookedBy_Userid == userID).ToList();
             //var bookings = db.Bookings.Include(b => b.Workshop);
+
+            //Selecting only bookings of future
+            var futureBook = new List<Booking>();
+            foreach(Booking b in book)
+            {
+                if(DateTime.Compare(b.Workshop.WorkshopDate, DateTime.Now) > 0)
+                {
+                    futureBook.Add(b);
+                }
+            }
+
             if (User.IsInRole("admin"))
             {
                 var b = db.Bookings.Include(k=>k.Workshop.Game);
                 book = db.Bookings.ToList();
+                foreach (Booking b2 in book)
+                {
+                    if (DateTime.Compare(b2.Workshop.WorkshopDate, DateTime.Now) > 0)
+                    {
+                        futureBook.Add(b2);
+                    }
+                }
             }
 
-
-
-            return View(book);
+            return View(futureBook);
         }
         [Authorize(Roles = "user")]
         public ActionResult UserWSList()
@@ -109,6 +125,27 @@ namespace PlayMore_V5._0.Controllers
             }
 
             //End of checking
+
+
+            //Check for number of bookings present for the particular user
+            var bookingsForUser = db.Bookings.Where(b => b.BookedBy_Userid == booking.BookedBy_Userid).ToList();
+            var futureBook = new List<Booking>();
+            foreach (Booking b in bookingsForUser)
+            {
+                if (DateTime.Compare(b.Workshop.WorkshopDate, DateTime.Now) > 0)
+                {
+                    futureBook.Add(b);
+                }
+            }
+
+            if (futureBook.Count >= AppConstants.MaximumBookings)
+            {
+                ViewBag.errorMsg = "User can only book a maximum of "+AppConstants.MaximumBookings+" bookings";
+                return View();
+            }
+
+
+
             //If no booking present then saving in DB
 
             if (ModelState.IsValid)

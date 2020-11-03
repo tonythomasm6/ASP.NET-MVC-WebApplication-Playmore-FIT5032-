@@ -4,18 +4,18 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<h2>Booking Details</h2>
 
 <div>
-    <h4>Booking</h4>
+    <h4></h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.BookedBy_Userid)
+            @Html.HiddenFor(model => model.BookedBy_Userid)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.BookedBy_Userid)
+            @Html.HiddenFor(model => model.BookedBy_Userid)
         </dd>
 
         <dt>
@@ -50,9 +50,40 @@
             @Html.DisplayFor(model => model.Workshop.WorkshopLocation)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Workshop.WorkshopDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Workshop.WorkshopDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Workshop.WorkShopFees)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Workshop.WorkShopFees)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Workshop.Coach.CoachFName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Workshop.Coach.CoachFName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Workshop.Coach.CoachLName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Workshop.Coach.CoachLName)
+        </dd>
+
     </dl>
 </div>
+<br />
+<br />
+
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.BookId }) |
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.BookId }) | *@
     @Html.ActionLink("Back to List", "Index")
 </p>

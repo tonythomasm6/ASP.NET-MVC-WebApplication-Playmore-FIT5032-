@@ -28,14 +28,17 @@
     <p class="success">Booking made succesfully !!!</p>
 </div>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 <script>
     function clickPop(val) {
         window.location.href = '@Url.Action("SetRating", "Bookings")/' + val;
     }
 </script>
+<br />
+
+<br />
+
+<p>Please Rate your booking Experience</p>
 <h2>
     <div class="rating" style="float: left;">
 
@@ -56,5 +59,7 @@
 <br />
 
 <br />
-
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
 <br />
